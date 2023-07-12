@@ -1,5 +1,8 @@
 // component
+
+import { HomeSharp, AssignmentSharp, Diversity3Sharp, SportsSharp, ScoreboardSharp  } from '@mui/icons-material';
 import SvgColor from '../../../components/svg-color';
+
 
 // ----------------------------------------------------------------------
 
@@ -7,35 +10,36 @@ const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ 
 
 const navConfig = [
   {
-    title: 'dashboard',
+    title: 'Home',
     path: '/dashboard/app',
-    icon: icon('ic_analytics'),
+    icon: <HomeSharp />,
   },
   {
-    title: 'user',
-    path: '/dashboard/user',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'teams',
-    path: '/dashboard/products',
-    icon: icon('ic_cart'),
-  },
-  {
-    title: 'matches',
+    title: 'Registration',
     path: '/dashboard/blog',
-    icon: icon('ic_blog'),
+    icon: <AssignmentSharp />,
   },
   {
-    title: 'login',
-    path: '/',
-    icon: icon('ic_lock'),
+    title: 'Teams',
+    path: '/dashboard/user',
+    icon: <Diversity3Sharp />,
+    
   },
   {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
+    title: 'Matches',
+    path: '/dashboard/products',
+    icon: <SportsSharp />,
+
+    
   },
+  {
+    title: 'Results',
+    path: '/dashboard/blog',
+    icon: <ScoreboardSharp />,
+    
+  },
+  
+ 
 ];
 
 export default navConfig;
