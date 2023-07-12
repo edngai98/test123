@@ -7,21 +7,22 @@ import ThemeProvider from './theme';
 // components
 import { StyledChart } from './components/chart';
 import ScrollToTop from './components/scroll-to-top';
+import { AuthContextProvider } from './context/AuthContext';
 
 // ----------------------------------------------------------------------
-
-//test123
 
 export default function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
-        <ThemeProvider>
-          <ScrollToTop />
-          <StyledChart />
-          <Router />
-        </ThemeProvider>
-      </BrowserRouter>
+      
+        
+          <ThemeProvider>
+            <ScrollToTop />
+            <StyledChart />
+            <Router />
+          </ThemeProvider>
+        
+      
     </HelmetProvider>
   );
 }

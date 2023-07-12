@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-
+import { BrowserRouter } from 'react-router-dom';
 //
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -9,7 +9,11 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-root.render(<App />);
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
 
 // If you want to enable client cache, register instead.
 serviceWorker.unregister();
