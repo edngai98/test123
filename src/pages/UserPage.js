@@ -8,7 +8,6 @@ import {
   Table,
   Stack,
   Paper,
-  Avatar,
   Button,
   Popover,
   Checkbox,
@@ -35,10 +34,10 @@ import USERLIST from '../_mock/user';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'ShirtNum', label: 'Shirt no.', alignRight: false },
+  { id: 'MobileNum', label: 'MobileNum', alignRight: false },
+  { id: 'SP', label: 'Suburb and Postcode', alignRight: false },
+  { id: 'DOB', label: 'DOB', alignRight: false },
   { id: '' },
 ];
 
@@ -149,16 +148,16 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> User | Minimal UI </title>
+        <title> Team members </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Team members
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
+            New Team Member
           </Button>
         </Stack>
 
@@ -179,7 +178,7 @@ export default function UserPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                    const { id, name, MobileNum, DOB, ShirtNum, SP } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -188,24 +187,22 @@ export default function UserPage() {
                           <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
                         </TableCell>
 
-                        <TableCell component="th" scope="row" padding="none">
+                        <TableCell component="th" scope="row" padding="2px">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
                             <Typography variant="subtitle2" noWrap>
                               {name}
                             </Typography>
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left" >{ShirtNum}</TableCell>
 
-                        <TableCell align="left">{role}</TableCell>
+                        <TableCell align="left">{MobileNum}</TableCell>
 
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                        <TableCell align="left">{SP}</TableCell>
+                        <TableCell align="left">{DOB}</TableCell>
 
-                        <TableCell align="left">
-                          <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label>
-                        </TableCell>
+                       
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
