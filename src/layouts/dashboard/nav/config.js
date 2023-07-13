@@ -1,7 +1,8 @@
 // component
-
-import { HomeSharp, AssignmentSharp, Diversity3Sharp, SportsSharp, ScoreboardSharp  } from '@mui/icons-material';
+import { AssignmentSharp, Diversity3Sharp, HomeSharp, ScoreboardSharp, SportsSharp } from '@mui/icons-material';
 import SvgColor from '../../../components/svg-color';
+
+
 
 
 // ----------------------------------------------------------------------
@@ -12,7 +13,7 @@ const navConfig = [
   {
     title: 'Home',
     path: '/dashboard/app',
-    icon: <HomeSharp />,
+    icon: <HomeSharp/>,
   },
   {
     title: 'Registration',
