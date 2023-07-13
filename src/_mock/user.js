@@ -8,7 +8,7 @@ const users = [...Array(24)].map((_, index) => ({
   name: 'Eddyslut linnaaa',
   ShirtNum: 2,
   SP: 'Lidcombe 2141',
-  DOB: '19/01/1998',
+  DOB: '19/01/98',
   MobileNum: '0401444222',
 }));
 

@@ -144,6 +144,8 @@ export default function UserPage() {
   const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && !!filterName;
+  
+ 
 
   return (
     <>
@@ -156,9 +158,10 @@ export default function UserPage() {
           <Typography variant="h4" gutterBottom>
             Team members
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}  >
             New Team Member
           </Button>
+        
         </Stack>
 
         <Card>
