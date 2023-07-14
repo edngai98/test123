@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
 import { useNavigate, NavLink as RouterLink } from 'react-router-dom';
@@ -11,7 +11,7 @@ import useResponsive from '../hooks/useResponsive';
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-
+import { UserAuth } from '../sections/auth/context/AuthContext';
 
 // ----------------------------------------------------------------------
 
@@ -45,7 +45,22 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 export default function LoginPage() {
   const mdUp = useResponsive('up', 'md');
-  
+  const { googleSignIn, user } = UserAuth();
+  const navigate = useNavigate();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (user != null) {
+      navigate('/dashboard/app');
+    }
+  }, [user]);
   
 
   return (
@@ -84,7 +99,7 @@ export default function LoginPage() {
             </Typography>
 
             <Stack direction="row" spacing={2}>
-              <Button fullWidth size="large" color="inherit" variant="outlined">
+              <Button onClick={handleGoogleSignIn} fullWidth size="large" color="inherit" variant="outlined">
                 <Iconify icon="eva:google-fill" color="#DF3E30" width={22} height={22} />
               </Button>
 
