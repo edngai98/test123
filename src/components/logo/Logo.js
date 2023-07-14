@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Box, Link } from '@mui/material';
+import { UserAuth } from '../../sections/auth/context/AuthContext';
 
 // ----------------------------------------------------------------------
 
@@ -15,6 +16,10 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   const PRIMARY_MAIN = theme.palette.primary.main;
 
   const PRIMARY_DARK = theme.palette.primary.dark;
+
+  const location = useLocation();
+
+  const { user, isLoggedIn } = UserAuth();
 
   // OR using local (public folder)
   // -------------------------------------------------------
@@ -78,8 +83,16 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
     return <>{logo}</>;
   }
 
+  if (isLoggedIn) {
+    return (
+      <Link to="/dashboard/app" component={RouterLink} sx={{ display: 'contents' }}>
+        {logo}
+      </Link>
+    );
+  }
+
   return (
-    <Link to="/dashboard/app" component={RouterLink} sx={{ display: 'contents' }}>
+    <Link to="/" component={RouterLink} sx={{ display: 'contents' }}>
       {logo}
     </Link>
   );

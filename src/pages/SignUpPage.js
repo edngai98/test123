@@ -4,12 +4,13 @@ import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { useNavigate, NavLink as RouterLink } from 'react-router-dom';
 import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
-import Loginform from '../sections/auth/login/LoginForm';
+import SignUpform from '../sections/auth/login/SignUpForm';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
+
 // sections
 
 
@@ -43,7 +44,7 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function LoginPage() {
+export default function SignUpPage() {
   const mdUp = useResponsive('up', 'md');
   
   
@@ -75,27 +76,13 @@ export default function LoginPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
+              Create an Account
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>
-              Don’t have an account? {''}
-              <Link component={RouterLink} to='/signup' variant="subtitle2" >Get started</Link>
+              Have an account? {''}
+              <Link component={RouterLink} to='/login' variant="subtitle2" >Sign In</Link>
             </Typography>
-
-            <Stack direction="row" spacing={2}>
-              <Button fullWidth size="large" color="inherit" variant="outlined">
-                <Iconify icon="eva:google-fill" color="#DF3E30" width={22} height={22} />
-              </Button>
-
-              <Button fullWidth size="large" color="inherit" variant="outlined">
-                <Iconify icon="eva:facebook-fill" color="#1877F2" width={22} height={22} />
-              </Button>
-
-              <Button fullWidth size="large" color="inherit" variant="outlined">
-                <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={22} height={22} />
-              </Button>
-            </Stack>
 
             <Divider sx={{ my: 3 }}>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -103,7 +90,7 @@ export default function LoginPage() {
               </Typography>
             </Divider>
 
-            <Loginform />
+            <SignUpform />
           </StyledContent>
         </Container>
       </StyledRoot>

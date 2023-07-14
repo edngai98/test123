@@ -12,7 +12,7 @@ import Iconify from '../../../components/iconify';
 
 // ----------------------------------------------------------------------
 
-const Loginform = () => {
+const SignUpform = () => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -23,19 +23,18 @@ const Loginform = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  
-  const { signIn } = UserAuth();
+  const [error, setError] = useState('')
+  const { createUser } = UserAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('')
+    setError('');
     try {
-      await signIn(email, password)
-      navigate('/dashboard')
+      await createUser(email, password);
+      navigate('/account')
     } catch (e) {
-      setError(e.message)
-      console.log(e.message)
+      setError(e.message);
+      console.log(e.message);
     }
   };
 
@@ -96,4 +95,4 @@ const Loginform = () => {
   );
 };
 
-export default Loginform;
+export default SignUpform;

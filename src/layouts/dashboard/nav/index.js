@@ -39,6 +39,8 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const isDesktop = useResponsive('up', 'lg');
 
+  // here is the file that uses logo
+
   useEffect(() => {
     if (openNav) {
       onCloseNav();

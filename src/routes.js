@@ -1,4 +1,4 @@
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, useRoutes, useLocation } from 'react-router-dom';
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
@@ -9,14 +9,27 @@ import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
+import SignUpPage from './pages/SignUpPage';
+import { UserAuth } from './sections/auth/context/AuthContext';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
+  const location = useLocation();
+  const { user, isLoggedIn } = UserAuth();
+
   const routes = useRoutes([
     {
       path: '/',
+      element: <Navigate to="/login" />,
+    },
+    {
+      path: '/login',
       element: <LoginPage />,
+    },
+    {
+      path: '/signup',
+      element: <SignUpPage />,
     },
     {
       path: '/dashboard',
@@ -41,6 +54,10 @@ export default function Router() {
       element: <Navigate to="/404" replace />,
     },
   ]);
+
+  if (isLoggedIn && (location.pathname === '/login' || location.pathname === '/signup')) {
+    return <Navigate to="/dashboard/app" replace />;
+  }
 
   return routes;
 }
