@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
+
 // @mui
 import { styled } from '@mui/material/styles';
 import { useNavigate, NavLink as RouterLink } from 'react-router-dom';
@@ -12,6 +13,7 @@ import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
 import { UserAuth } from '../sections/auth/context/AuthContext';
+
 
 // ----------------------------------------------------------------------
 
@@ -103,13 +105,13 @@ export default function LoginPage() {
                 <Iconify icon="eva:google-fill" color="#DF3E30" width={22} height={22} />
               </Button>
 
-              <Button fullWidth size="large" color="inherit" variant="outlined">
+              {/* <Button fullWidth size="large" color="inherit" variant="outlined">
                 <Iconify icon="eva:facebook-fill" color="#1877F2" width={22} height={22} />
               </Button>
 
               <Button fullWidth size="large" color="inherit" variant="outlined">
                 <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={22} height={22} />
-              </Button>
+              </Button> */}
             </Stack>
 
             <Divider sx={{ my: 3 }}>
