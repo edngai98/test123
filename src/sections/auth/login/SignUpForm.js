@@ -31,7 +31,7 @@ const SignUpform = () => {
     setError('');
     try {
       await createUser(email, password);
-      navigate('/account')
+      navigate('/dashboard')
     } catch (e) {
       setError(e.message);
       console.log(e.message);
@@ -89,7 +89,7 @@ const SignUpform = () => {
       </Stack>
 
       <LoadingButton ref={submitButtonRef} onClick={handleSubmit} fullWidth size="large" type="submit" variant="contained" >
-        Login
+        Sign up
       </LoadingButton>
     </>
   );
