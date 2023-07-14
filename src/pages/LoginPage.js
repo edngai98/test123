@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
-
 // @mui
 import { styled } from '@mui/material/styles';
 import { useNavigate, NavLink as RouterLink } from 'react-router-dom';
@@ -62,7 +61,7 @@ export default function LoginPage() {
     if (user != null) {
       navigate('/dashboard/app');
     }
-  }, [user]);
+  }, [user, navigate]);
   
 
   return (
