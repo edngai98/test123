@@ -3,13 +3,14 @@ import { sample } from 'lodash';
 
 // ----------------------------------------------------------------------
 
-const users = [...Array(24)].map((_, index) => ({
-  id: faker.datatype.uuid(),
-  name: 'Eddyslut linnaaa',
-  ShirtNum: 2,
-  SP: 'Lidcombe 2141',
+const USERLIST = [
+  {
+  id: 1,
+  name: 'John Doe',
+  ShirtNum: '2',
+  SP: 'Medium',
   DOB: '19/01/98',
-  MobileNum: '0401444222',
-}));
-
-export default users;
+  MobileNum: '1234567890',
+  },
+];
+export default USERLIST;

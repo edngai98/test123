@@ -8,8 +8,11 @@ import {
   Table,
   Stack,
   Paper,
+  Box,
   Button,
   Popover,
+  Modal,
+  TextField,
   Checkbox,
   TableRow,
   MenuItem,
@@ -25,6 +28,7 @@ import {
 import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
+
 // sections
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
@@ -71,6 +75,16 @@ function applySortFilter(array, comparator, query) {
   }
   return stabilizedThis.map((el) => el[0]);
 }
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function UserPage() {
   const [open, setOpen] = useState(null);
@@ -85,8 +99,32 @@ export default function UserPage() {
 
   const [filterName, setFilterName] = useState('');
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  // This is to open the modal and close it 
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+  // End modal logic
+ const [users, setUsers] = useState(USERLIST);
+ const [newUser, setNewUser] = useState({
+  id: '',
+  name: '',
+  ShirtName: 2,
+  SP: '',
+  DOB: '',
+  MobileNum: '',
+} );
+const handleChange = (e) => {
+  const {id, value} = e.target;
+  setNewUser((prevState) => ({
+    ...prevState,
+    [id]: value,
+  }));
+ }; 
+ const addUser = () => {
+  setUsers([...users, newUser]);
+  handleClose();
+};
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
   };
@@ -145,8 +183,6 @@ export default function UserPage() {
 
   const isNotFound = !filteredUsers.length && !!filterName;
   
- 
-
   return (
     <>
       <Helmet>
@@ -158,9 +194,28 @@ export default function UserPage() {
           <Typography variant="h4" gutterBottom>
             Team members
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}  >
+          
+          <Button onClick = {handleOpen} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}  >
             New Team Member
           </Button>
+          <Modal
+            open={openModal}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description" >   
+            <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2" marginBottom='10px'>
+              Add new team member
+            </Typography>
+            <TextField id="outlined-basic" fullWidth label="ID" variant="outlined" value={newUser.id} onChange={(e) => setUsers(e.target.value)} margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="Full name" variant="outlined"  value={newUser.name} onChange={handleChange} margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="Shirt number" variant="outlined" value={newUser.ShirtNum} onChange={handleChange} margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="Mobile Number" variant="outlined" value={newUser.MobileNum} onChange={handleChange}  margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="Suburb and Postcode"value={newUser.SP} variant="outlined"onChange={handleChange} margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="D.O.B" variant="outlined" value={newUser.DOB} onChange={handleChange} margin='dense'/>
+            <Button  variant="contained" onClick={addUser} sx={{marginTop: '15px',}}>Add member</Button>
+            </Box>
+          </Modal>
         
         </Stack>
 
