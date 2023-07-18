@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
+
 import { useState } from 'react';
 // @mui
 import {
@@ -106,25 +106,33 @@ export default function UserPage() {
   const handleClose = () => setOpenModal(false);
   // End modal logic
  const [users, setUsers] = useState(USERLIST);
- const [newUser, setNewUser] = useState({
-  id: '',
-  name: '',
-  ShirtName: 2,
-  SP: '',
-  DOB: '',
-  MobileNum: '',
-} );
-const handleChange = (e) => {
-  const {id, value} = e.target;
-  setNewUser((prevState) => ({
-    ...prevState,
-    [id]: value,
-  }));
- }; 
- const addUser = () => {
-  setUsers([...users, newUser]);
+ 
+
+
+const [ID, setID] = useState('');
+const [Name, setName] = useState('');
+const [ShirtNum, setShirtNum] = useState('');
+const [MobileNum, setMobileNum] = useState('');
+const [SP, setSP] = useState('');
+const [DOB, setDOB] = useState('');
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  
+  const newUser = {
+    id: ID, 
+    name: Name,
+    ShirtNum, 
+    SP, 
+    DOB, 
+    MobileNum,
+  }
+  USERLIST.push(newUser);
   handleClose();
-};
+
+}
+
+
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
   };
@@ -207,13 +215,13 @@ const handleChange = (e) => {
             <Typography id="modal-modal-title" variant="h6" component="h2" marginBottom='10px'>
               Add new team member
             </Typography>
-            <TextField id="outlined-basic" fullWidth label="ID" variant="outlined" value={newUser.id} onChange={(e) => setUsers(e.target.value)} margin='dense'/>
-            <TextField id="outlined-basic" fullWidth label="Full name" variant="outlined"  value={newUser.name} onChange={handleChange} margin='dense'/>
-            <TextField id="outlined-basic" fullWidth label="Shirt number" variant="outlined" value={newUser.ShirtNum} onChange={handleChange} margin='dense'/>
-            <TextField id="outlined-basic" fullWidth label="Mobile Number" variant="outlined" value={newUser.MobileNum} onChange={handleChange}  margin='dense'/>
-            <TextField id="outlined-basic" fullWidth label="Suburb and Postcode"value={newUser.SP} variant="outlined"onChange={handleChange} margin='dense'/>
-            <TextField id="outlined-basic" fullWidth label="D.O.B" variant="outlined" value={newUser.DOB} onChange={handleChange} margin='dense'/>
-            <Button  variant="contained" onClick={addUser} sx={{marginTop: '15px',}}>Add member</Button>
+            <TextField id="outlined-basic" fullWidth label="ID" variant="outlined"  onChange={(e) => setID(e.target.value)} margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="Full name" variant="outlined"   onChange={(e) => setName(e.target.value)} margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="Shirt number" variant="outlined"  onChange={(e) => setShirtNum(e.target.value)} margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="Mobile Number" variant="outlined"  onChange={(e) => setMobileNum(e.target.value)}  margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="Suburb and Postcode" variant="outlined"onChange={(e) => setSP(e.target.value)} margin='dense'/>
+            <TextField id="outlined-basic" fullWidth label="D.O.B" variant="outlined"  onChange={(e) => setDOB(e.target.value)} margin='dense'/>
+            <Button  variant="contained" onClick={handleSubmit} sx={{marginTop: '15px',}}>Add member</Button>
             </Box>
           </Modal>
         
